@@ -6,7 +6,7 @@ var url = require('url');
 function litsener(request, response) {
 	var pathname = url.parse(request.url).pathname;
 	if (pathname == '/') {
-		fs.readFile('index.html', function (error, data) {
+		fs.readFile('web/index.html', function (error, data) {
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end(data);
 		})
