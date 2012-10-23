@@ -1,10 +1,18 @@
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var listener = require('./listener.js');
 
 
 function litsener(request, response) {
 	var pathname = url.parse(request.url).pathname;
+
+	fs.readFile(listener.dispatch(pathname), function (error, data) {
+		response.writeHead(200, {'Content-Type': 'text/html'});
+		response.end(data);
+	})
+	
+	/*
 	if (pathname == '/') {
 		fs.readFile('web/index.html', function (error, data) {
 			response.writeHead(200, {'Content-Type': 'text/html'});
@@ -15,6 +23,7 @@ function litsener(request, response) {
 		response.writeHead(200, {'Content-Type': 'text/html'});
 		response.end('<h1> Welcome '+ pathname.replace(/\//gi,' ') + '</h1>');
 	}
+	*/
 }
 
 http.createServer(litsener).listen(52273, function() {
