@@ -1,31 +1,17 @@
 var http = require('http');
-var fs = require('fs');
 var url = require('url');
-var listener = require('./listener.js');
+
+var servletMapping = require('./web.js').servletMapping;
 
 
-function litsener(request, response) {
+function application(request, response) {
 	var pathname = url.parse(request.url).pathname;
-
-	fs.readFile(listener.dispatch(pathname), function (error, data) {
-		response.writeHead(200, {'Content-Type': 'text/html'});
-		response.end(data);
-	})
+	var servlet = servletMapping(pathname);
 	
-	/*
-	if (pathname == '/') {
-		fs.readFile('web/index.html', function (error, data) {
-			response.writeHead(200, {'Content-Type': 'text/html'});
-			response.end(data);
-		})
-	}
-	else {
-		response.writeHead(200, {'Content-Type': 'text/html'});
-		response.end('<h1> Welcome '+ pathname.replace(/\//gi,' ') + '</h1>');
-	}
-	*/
+	servlet(request, response);
+	
 }
 
-http.createServer(litsener).listen(52273, function() {
+http.createServer(application).listen(52273, function() {
 	console.log('Server running at http://127.0.0.1:52273/');
 });
