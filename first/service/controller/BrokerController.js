@@ -16,9 +16,8 @@ exports.BrokerController = function(request, response) {
 	if (pathname.match(/\.do/)) {
 		process(request, response);
 	}
-	else {
-		return false;
-	}
 	
 	console.log('post control');
+	
+	return false;
 }

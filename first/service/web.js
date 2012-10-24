@@ -1,6 +1,6 @@
 var errorPage = require('./servlet/ErrorPage.js').ErrorPage;
-var patterns = require('./configure/config.js').patterns;
-var error = require('./configure/config.js').error;
+var patterns = require('./configure/mvc/config.js').patterns;
+var error = require('./configure/mvc/config.js').error;
 
 
 exports.servletMapping = function(url) {
