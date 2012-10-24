@@ -5,11 +5,9 @@ var servletMapping = require('./web.js').servletMapping;
 
 
 function application(request, response) {
-	var pathname = url.parse(request.url).pathname;
-	var servlet = servletMapping(pathname);
+	var servlet = servletMapping(url.parse(request.url).pathname);
 	
 	servlet(request, response);
-	
 }
 
 http.createServer(application).listen(52273, function() {

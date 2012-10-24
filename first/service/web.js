@@ -5,15 +5,10 @@ var errorPage = require('./servlet/ErrorPage.js').ErrorPage;
 
 var error = new Servlet("error", errorPage);
 
-
-function ServletMapping(pattern, servlet){
-	this.pattern = pattern
-	this.servlet = servlet
-};
-
 var patterns = [
-	  new ServletMapping('/', new Servlet("action", dispatcherServlet))
-	, new ServletMapping(/\.do/, new Servlet("action", dispatcherServlet))
+      { pattern: '/'      , servlet: {name:"action", func:dispatcherServlet} }
+    , { pattern: /\.do/   , servlet: {name:"action", func:dispatcherServlet} }
+    , { pattern: /\.login/, servlet: {name:"action", func:dispatcherServlet} }
 ];
 
 exports.servletMapping = function(url) {
