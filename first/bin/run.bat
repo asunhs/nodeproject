@@ -1,3 +1,3 @@
 cd F:\workspace\laboratory\NodeProject\first\
-node service\webServer.js
+node service\server.js
 pause

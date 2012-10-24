@@ -1,5 +1,7 @@
-var BrokerController = require('../controller/BrokerController.js').BrokerController;
+var controller = require('../configure/dispatcher-servlet.js').controller;
 
 exports.DispatcherServlet = function(request, response) {
-	BrokerController(request, response);
+	for (var i = controller.length; i--;) {
+		controller[i].controller(request, response);
+	}
 }
