@@ -1,5 +1,5 @@
-var dispatcherServlet = require('../servlet/DispatcherServlet.js').DispatcherServlet;
-var errorPage = require('../servlet/ErrorPage.js').ErrorPage;
+var dispatcherServlet = require('../../servlet/DispatcherServlet.js').DispatcherServlet;
+var errorPage = require('../../servlet/ErrorPage.js').ErrorPage;
 
 exports.patterns = [
       { pattern: '/'      , servlet: {name:"action", func:dispatcherServlet} }
